@@ -1,0 +1,55 @@
+<div class="container">
+    {{#if user}}
+    <h1>Mój profil</h1>
+    <div class="d-flex justify-content-between col-all">
+        <div class="d-flex col-5 flex-column col-data">
+            <div class="d-flex justify-content-between">
+                <span id="nick">Nick:</span>
+                <span id="nick_value">{{user.username}}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span id="mail">Email:</span>
+                <span id="email_value">{{user.email}}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span id="age">Wiek:</span>
+                <span id="age_value">{{user.age}}</span>
+            </div>
+        </div>
+        <div class="d-flex col-5 flex-column col-stats">
+            <div class="d-flex justify-content-between">
+                <span id="starter">Ilośc punktów w trybie treningowym:</span>
+                <span id="starter_value">{{user.scoreTraining}}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span id="ranked">Ilośc punktów w trybie rankingowym:</span>
+                <span id="ranked_value">{{user.scoreQuiz}}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span id="rivals">Ilośc punktów w trybie rywalizacji:</span>
+                <span id="rivals_value">{{user.scoreRivalry}}</span>
+            </div>
+        </div>
+    </div>
+    <table class="table mt-2">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nick</th>
+                <th scope="col">Wiek</th>
+                <th scope="col">Wynik</th>
+            </tr>
+        </thead>
+        <tbody id="import">
+        </tbody>
+    </table>
+    {{/if}}
+</div>
+
+<script>
+    $.getScript("/javascripts/profile/Net.js", function () {
+        var imported = document.createElement('script');
+        imported.src = "/javascripts/profile/Main.js"
+        document.head.appendChild(imported);
+    });
+</script>

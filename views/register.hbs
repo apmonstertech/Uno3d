@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>Zarejestruj się</h2>
+    <form action="/users/register" method="POST">
+        {{#if errors}} {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+        {{/each}} {{else}} {{/if}}
+        <div class="form-group">
+            <input type="text" class="form-control form-control-input" id="usernameReq" style="background-color: transparent" name="username"
+                placeholder="Wprowadź swoją nazwę użytkownika" required>
+            <label for="nick" class="form-control-title">NAZWA UŻYTKOWNIKA</label>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-input" id="passwordReq" style="background-color: transparent" name="password"
+                placeholder="Wprowadź swoje hasło" required>
+            <label for="password" class="form-control-title">HASŁO</label>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-input" id="exampleInputPassword1" style="background-color: transparent"
+                name="passwordAgain" placeholder="Potwierdź hasło">
+            <label for="exampleInputPassword1" class="form-control-title">POTWIERDŹ HASŁO</label>
+        </div>
+        <button type="submit" class="btn btn-control">Zarejestruj się</button>
+        <button class="btn btn-control-login">Masz już konto?<span class="btn-title-loginup"> <a href="/users/login" style="text-decoration:none; color: #fff;">Zaloguj
+                    się
+                </a>
+            </span></button>
+    </form>
+</div>

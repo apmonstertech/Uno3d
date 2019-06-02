@@ -1,0 +1,30 @@
+<div id="blocker">
+
+    <div id="instructions">
+        <span style="font-size:40px">Click to play</span>
+        <br /> (W, A, S, D = Move, SPACE = Jump, MOUSE = Look around)
+    </div>
+
+</div>
+<div class="inventory">
+    <div class="items">
+        <span class="item" id="it1"></span>
+        <span class="item" id="it2"></span>
+        <span class="item" id="it3"></span>
+        <span class="item" id="it4"></span>
+        <span class="item" id="it5"></span>
+        <span class="item" id="it6"></span>
+        <span class="item" id="it7"></span>
+        <span class="item" id="it8"></span>
+        <span class="item" id="it9"></span>
+    </div>
+</div>
+<script>
+    $.getScript("/javascripts/libs/three_ver97.js", function () {
+        $.getScript("/javascripts/world/control.js", function () {
+            var imported = document.createElement('script');
+            imported.src = "/javascripts/world/script.js"
+            document.head.appendChild(imported);
+        });
+    });
+</script>
