@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
-
+var User = require('../models/user');
+var texture;
 router.get('/', function (req, res, next) {
   if (req.isAuthenticated()) {
     res.render('index', { "user": req.user })
@@ -24,17 +24,33 @@ router.get('/world', function (req, res, next) {
 });
 
 router.post('/world', function (req, res, next) {
-  console.log(req.body)
-  res.send(req.body.texture)
-});
+  res.send(texture)
 
+});
 
 router.get('/choice', function (req, res, next) {
   if (req.isAuthenticated()) {
-    res.render('texture', { "user": req.user })
+    User.findOne({ username: req.user.username }, function (error, docs) {
+      if (docs.texture != "") {
+        res.redirect("/world")
+      } else {
+        res.render('texture', { "user": req.user })
+      }
+    });
+
   } else {
     res.redirect('/users/login')
   }
+});
+
+router.post('/choice', function (req, res, next) {
+  console.log(req.user, req.body.texture)
+  texture = req.body.texture
+  var query = { username: req.user }
+  User.findOne({ username: req.user.username }, function (error, docs) {
+    docs.texture = texture
+    docs.save()
+  });
 });
 
 router.get('/world/quest', function (req, res, next) {

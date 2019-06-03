@@ -1,13 +1,12 @@
 
-class Net {
-    constructor() { }
-    sendTexture(name) {
+class NetTexture {
+    constructor() {
+        this.getTexture()
+    }
+    getTexture() {
         var obj
         $.ajax({
-            url: "/choice",
-            data: {
-                texture: name,
-            },
+            url: "/world",
             type: "POST",
             success: function (data) {
                 console.log(data)

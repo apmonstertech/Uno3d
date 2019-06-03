@@ -106,7 +106,7 @@ router.post('/register', function (req, res, next) {
         });
         req.flash('succes', 'You are now registered and can logged')
         //res.location('/world')
-        res.redirect('/login')
+        res.redirect('/users/login')
       }
     });
   }

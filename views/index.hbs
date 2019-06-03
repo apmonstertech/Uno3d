@@ -24,7 +24,10 @@
         $.getScript("/javascripts/world/control.js", function () {
             var imported = document.createElement('script');
             imported.src = "/javascripts/world/script.js"
+            var imported2 = document.createElement('script');
+            imported2.src = "/javascripts/world/NetTexture.js"
             document.head.appendChild(imported);
+            document.head.appendChild(imported2);
         });
     });
 </script>
