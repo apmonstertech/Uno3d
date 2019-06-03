@@ -11,17 +11,6 @@ var UserSchema = mongoose.Schema({
     password: {
         type: String
     },
-    items: {
-        numOne: String,
-        numTwo: String,
-        numThree: String,
-        numFour: String,
-        numFive: String,
-        numSix: String,
-        numSeven: String,
-        numEight: String,
-        numNine: String,
-    },
     texture: String
 })
 

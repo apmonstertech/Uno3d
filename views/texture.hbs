@@ -1,48 +1,3 @@
-{{!--
-<div class="container">
-    <div class="row">
-        <div class="d-flex lobby-content">
-            <div class="col-sm-4 d-flex flex-column lobby-col-guess reglog">
-                <button class="btn btn-success btn-texture">
-                    <div class="card b-transparent">
-                        <div class="card-header">
-                            <h3 class="w-100 p-2">Belzebub</h3>
-                        </div>
-                        <div class="card-body">
-                            <img src="./gfx/belzebub.jpg" class="img_texture">
-                        </div>
-                    </div>
-                </button>
-            </div>
-            <div class="col-sm-4 d-flex flex-column lobby-col-guess join">
-                <button class="btn btn-success d-flex justify-content-center text-center">
-                    <div class="card b-transparent ">
-                        <div class="card-header">
-                            <h3 class="w-100 p-2">Słodka Natalka</h3>
-                        </div>
-                        <div class="card-body">
-                            <img src="./gfx/blondie.jpg" class="img_texture">
-                        </div>
-                    </div>
-                </button>
-            </div>
-            <div class="col-sm-4 d-flex flex-column ">
-                <button class="btn btn-danger">
-                    <div class="card b-transparent ">
-                        <div class="card-header">
-                            <h3 class="w-100 p-2">Super mario</h3>
-                        </div>
-                        <div class="card-body">
-                            <img src="./gfx/mario.png" class="img_texture">
-                        </div>
-                    </div>
-                </button>
-            </div>
-        </div>
-        {{!-- <button class="start"><a href="/world">Dołącz do przygody</a></button> --}}
-    </div>
-</div> --}}
-
 <div class="container">
     <div class="row">
         <div class="col-6 col-md-4">
@@ -52,21 +7,23 @@
                         <h3 class="w-100 p-2">Belzebub</h3>
                     </div>
                     <div class="card-body">
-                        <img src="./gfx/belzebub.jpg" class="img_texture">
+                        <img src="./gfx/belzebub.jpg" class="img_texture" name="belzebub">
                     </div>
                 </div>
             </button>
         </div>
         <div class="col-6 col-md-4">
             <button class="btn btn-success d-flex justify-content-center text-center">
-                <div class="card b-transparent ">
-                    <div class="card-header">
-                        <h3 class="w-100 p-2">Słodka Natalka</h3>
+                <a href="/world">
+                    <div class="card b-transparent ">
+                        <div class="card-header">
+                            <h3 class="w-100 p-2">Słodka Natalka</h3>
+                        </div>
+                        <div class="card-body">
+                            <img src="./gfx/blondie.jpg" class="img_texture" name="blondie">
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <img src="./gfx/blondie.jpg" class="img_texture">
-                    </div>
-                </div>
+                </a>
             </button>
         </div>
         <div class="col-6 col-md-4">
@@ -76,10 +33,13 @@
                         <h3 class="w-100 p-2">Super mario</h3>
                     </div>
                     <div class="card-body">
-                        <img src="./gfx/mario.png" class="img_texture">
+                        <img src="./gfx/mario.png" class="img_texture" name="mario">
                     </div>
                 </div>
             </button>
         </div>
     </div>
 </div>
+
+<script src="javascripts/texture/choice.js"></script>
+<script src="javascripts/texture/Net.js"></script>

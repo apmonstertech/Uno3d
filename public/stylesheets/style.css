@@ -141,14 +141,14 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 70px;
     background-color: transparent;
     display: flex;
     justify-content: center;
 }
 
 .items {
-    flex-basis: 40%;
+    flex-basis: 35%;
     display: flex;
     flex-direction: row;
     border: 2px solid #707070;
