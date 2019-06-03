@@ -168,3 +168,6 @@ body {
 }
 
 .btn-texture {}
+.active{
+    border:2px solid yellow;
+}
