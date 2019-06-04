@@ -29,7 +29,7 @@ router.post('/login',
   passport.authenticate('local',
     { failureRedirect: '/users/login', failureFlash: true }),
   function (req, res) {
-    res.redirect('/choice')
+    res.redirect('/world')
 
   });
 

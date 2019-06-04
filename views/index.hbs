@@ -1,3 +1,4 @@
+{{!--
 <div id="blocker">
 
     <div id="instructions">
@@ -18,16 +19,18 @@
         <span class="item" id="it8"></span>
         <span class="item" id="it9"></span>
     </div>
-</div>
+</div> --}}
+<div id="root"></div>
 <script>
     $.getScript("/javascripts/libs/three_ver97.js", function () {
-        $.getScript("/javascripts/world/control.js", function () {
-            var imported = document.createElement('script');
-            imported.src = "/javascripts/world/script.js"
-            var imported2 = document.createElement('script');
-            imported2.src = "/javascripts/world/NetTexture.js"
-            document.head.appendChild(imported);
-            document.head.appendChild(imported2);
+        $.getScript("/javascripts/elements/stack.js", function () {
+            $.getScript("/javascripts/world/NetTexture.js", function () {
+                $.getScript("/javascripts/libs/OrbitControls.js", function () {
+                    var imported = document.createElement('script');
+                    imported.src = "/javascripts/world/Main.js"
+                    document.head.appendChild(imported);
+                });
+            });
         });
     });
 </script>
