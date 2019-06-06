@@ -98,9 +98,10 @@ router.post('/start', function (req, res, next) {
       for (var i = 0; i < 8; i++) {
         cardFiltered.push(allCards.splice(0,1)[0])
       }
-      if(!last[0]) {
+      if(last[0] == undefined) {
         var i = 0;
-        while(parseInt(allCards[i].value) != NaN){
+        while(true){
+          if(parseInt(allCards[i].value) != NaN) break;
           i++
         }
         last.push(allCards.splice(i,1)[0])
