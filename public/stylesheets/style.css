@@ -189,3 +189,12 @@ body {
     align-items: center;
 
 }
+#info{
+    position: absolute;
+    z-index: 1000;
+    top:0;
+    right: 0;
+    width: 200px;
+    background-color: #707070;
+    color:black;
+}

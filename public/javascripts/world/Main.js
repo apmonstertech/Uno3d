@@ -1,3 +1,4 @@
+var zaleznosci= {};
 $(document).ready(function () {
     mainMove = {
         nick: "",

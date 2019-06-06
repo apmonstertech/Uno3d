@@ -4,6 +4,7 @@ var router = express.Router();
 var User = require('../models/user');
 var Cards = require('../models/card');
 // var socketApi = require('../socketApi')
+var last= [];
 var allCards = []
 var usersArr = []
 var countR = 0;
@@ -23,6 +24,7 @@ Cards.find({}, function (err, docs) {
     for (var i = 0; i < docs.length; i++) {
       allCards.push(docs[i])
     }
+    console.log(allCards)
     shuffle(allCards);
   } 
 })
@@ -62,6 +64,26 @@ router.get('/', function (req, res, next) {
 //     return JSON.stringify(cardFiltered)
 //   }
 // });
+router.post('/next', function (req, res, next) {
+  currUs++;
+  if(req.body.used == "hit"){
+    for(var c = last.length-1; c < 0; c--){
+      if(last[c].value != "changeColor"|| parseInt(last[c].value) ==NaN){
+        last.splice(c,1);
+        c++;
+      }
+    }
+  }
+  if(req.body.used.value) {
+    if(req.body.used.value == "turnback")currUs-=2;
+  }
+  
+  last.push(req.body.used);
+  res.end();
+})
+router.post('/addCard', function (req, res, next) {
+  res.end(JSON.stringify(allCards.splice(0,1)[0]));
+})
 router.post('/card', function (req, res, next) {
   res.end(JSON.stringify(allCards.splice(0,1)[0]));
 })
@@ -74,15 +96,21 @@ router.post('/start', function (req, res, next) {
     if(countR >= 2 && countR == usersArr.length) {
       cardFiltered = []
       for (var i = 0; i < 8; i++) {
-        cardFiltered.push(allCards.splice(i,1)[0])
+        cardFiltered.push(allCards.splice(0,1)[0])
+      }
+      if(!last[0]) {
+        var i = 0;
+        while(parseInt(allCards[i].value) != NaN){
+          i++
+        }
+        last.push(allCards.splice(i,1)[0])
       }
       res.end(JSON.stringify(['start',cardFiltered]))
     }
     res.end('')
 })
 router.post('/roundStart', function (req, res, next) {
-  console.log(usersArr,currUs)
-  res.end(usersArr[currUs])
+  res.end(JSON.stringify([usersArr[currUs],last]));
 })
 router.get('/world', function (req, res, next) {
   
