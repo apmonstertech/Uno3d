@@ -1,6 +1,7 @@
 require('./db/db')
 var createError = require('http-errors');
 var express = require('express');
+// var socket_io = require("socket.io");
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -13,13 +14,18 @@ var hbs = require("express-handlebars")
 var flash = require("express-flash-messages");
 var bcrypt = require('bcryptjs');
 var mongo = require('mongodb');
-var mongoose = require('mongoose')
-
+var mongoose = require('mongoose');
+// var http = require('http').createServer(app);
+// var socketio = require('socket.io')(http);
+// var io = socket_io();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var lobbyRouter = require('./routes/lobby');
 
 var app = express();
+
+// app.io = io;
+
 
 // view engine setup
 

@@ -1,18 +1,93 @@
-var express = require('express');
+// module.exports = function(io) {
+  var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Cards = require('../models/card');
+// var socketApi = require('../socketApi')
 var allCards = []
+var usersArr = []
+var countR = 0;
+var currUs = 0;
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+  }
+  return a;
+}
+Cards.find({}, function (err, docs) {
+  if (!err) {
+    for (var i = 0; i < docs.length; i++) {
+      allCards.push(docs[i])
+    }
+    shuffle(allCards);
+  } 
+})
+
 
 router.get('/', function (req, res, next) {
   if (req.isAuthenticated()) {
     res.render('index', { "user": req.user })
   } else {
     res.redirect('/lobby')
+
   }
 });
 
+
+
+// socketApi.io.on('connection', function(socket){
+//   usersArr.push({id: socket.id})
+//   console.log(usersArr)
+//   socketApi.io.emit("cos",{"XD":"XXD"})
+// });
+// socketApi.io.on('ready', function(socket){
+//   console.log(countR)
+//   if(countR >= 2 && countR == usersArr.length){
+//     console.log("Koniec")
+//     socketApi.io.emit('gameStart');
+//   } else {
+//     countR++;
+//   }
+// });
+// socketApi.io.emit('randomCards', {
+//   cards: () => {
+//     cardFiltered = []
+//     for (var i = 0; i < 8; i++) {
+//       cardFiltered.push(allCards.splice(i,1)[0])
+//     }
+//     return JSON.stringify(cardFiltered)
+//   }
+// });
+router.post('/card', function (req, res, next) {
+  res.end(JSON.stringify(allCards.splice(0,1)[0]));
+})
+router.post('/ready', function (req, res, next) {
+    countR++;
+    usersArr.push(req.body.nick);
+    res.end();
+})
+router.post('/start', function (req, res, next) {
+    if(countR >= 2 && countR == usersArr.length) {
+      cardFiltered = []
+      for (var i = 0; i < 8; i++) {
+        cardFiltered.push(allCards.splice(i,1)[0])
+      }
+      res.end(JSON.stringify(['start',cardFiltered]))
+    }
+    res.end('')
+})
+router.post('/roundStart', function (req, res, next) {
+  console.log(usersArr,currUs)
+  res.end(usersArr[currUs])
+})
 router.get('/world', function (req, res, next) {
+  
+ 
+ 
   if (req.session.page_views) {
     req.session.page_views++;
   } else {
@@ -25,21 +100,13 @@ router.get('/world', function (req, res, next) {
 
     //res.redirect('/lobby')
   }
-});
-
-router.post('/world', function (req, res, next) {
-  Cards.find({}, function (err, docs) {
-    if (!err) {
-      var cards = []
-      cardFiltered = []
-      for (var i = 0; i < 8; i++) {
-        cardFiltered.push(docs[Math.floor(Math.random() * docs.length)])
-        allCards.push()
-      }
-      console.log(cardFiltered)
-      res.send(JSON.stringify(cardFiltered))
-    } else { throw err; }
-  });
+  // socketio.emit("onconnect", {
+  //   clientName:client.id
+  // })
+//   socketio.on("start", function (data) {
+//     console.log(data.user)
+//     socketio.sockets.emit("mouseposition", { posX: data.posX, posY:data.posY });
+// })
 });
 
 // router.get('/choice', function (req, res, next) {
@@ -87,3 +154,5 @@ function ensureAuthenticated(req, res, next) {
 }
 
 module.exports = router;
+
+// }

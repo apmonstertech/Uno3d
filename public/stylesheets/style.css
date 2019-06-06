@@ -147,16 +147,21 @@ body {
     justify-content: center;
 }
 
-.items {
-    flex-basis: 35%;
+#items {
     display: flex;
     flex-direction: row;
     border: 2px solid #707070;
     border-top: 4px solid #707070;
+    align-items: center;
+    justify-content: center;
 }
 
 .item {
-    flex-basis: calc(100%/9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    min-height:100%;
     background-color: #f8f8f846;
     border-left: 2px solid #707070;
     border-right: 2px solid #707070;
@@ -170,4 +175,17 @@ body {
 .btn-texture {}
 .active{
     border:2px solid yellow;
+}
+#ui{
+    position: absolute;
+    display: flex;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:rgba(69,69,69,0.5);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
