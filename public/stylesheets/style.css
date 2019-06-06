@@ -162,7 +162,7 @@ body {
     justify-content: center;
     min-width: 50px;
     min-height:100%;
-    background-color: #f8f8f846;
+    border: 2px solid red;
     border-left: 2px solid #707070;
     border-right: 2px solid #707070;
 }
@@ -173,9 +173,7 @@ body {
 }
 
 .btn-texture {}
-.active{
-    border:2px solid yellow;
-}
+
 #ui{
     position: absolute;
     display: flex;
@@ -197,4 +195,10 @@ body {
     width: 200px;
     background-color: #707070;
     color:black;
+}
+.item.can {
+    border: 2px solid #2FA812;
+}
+.item.can.active {
+    border: 2px solid orange;
 }

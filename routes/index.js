@@ -77,6 +77,7 @@ router.post('/next', function (req, res, next) {
   if(req.body.used.value) {
     if(req.body.used.value == "turnback")currUs-=2;
   }
+  currUs = currUs % usersArr.length;
   
   last.push(req.body.used);
   res.end();
@@ -100,12 +101,23 @@ router.post('/start', function (req, res, next) {
       }
       if(last[0] == undefined) {
         var i = 0;
-        while(true){
-          if(parseInt(allCards[i].value) != NaN) break;
-          i++
+        var start = true;
+        while(start){
+          
+          if(parseInt(allCards[i].value)){
+            console.log(allCards[i].value.split("+"))
+            if(allCards[i].value.split("+").length == 1){
+              start = false;
+            } else {
+              i++
+            }
+          } else {
+            i++
+          }
         }
         last.push(allCards.splice(i,1)[0])
       }
+      console.log(last)
       res.end(JSON.stringify(['start',cardFiltered]))
     }
     res.end('')
