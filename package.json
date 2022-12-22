@@ -21,7 +21,7 @@
     "express-validator": "*",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongodb": "*",
     "mongoose": "*",
     "mongoose-random": "^0.1.1",
